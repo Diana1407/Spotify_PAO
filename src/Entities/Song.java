@@ -71,7 +71,7 @@ public class Song {
     @Override
     public String toString() {
         String result = "Song id: " + id + "\n";
-        result += "Name: " + name + "\n";
+        result += "Name: c" + name + "\n";
         result += "Artist: " + artist.getUsername() + "\n";
         result += "Album: " + album.getTitle() + "\n";
         result += "Duration: " + duration + "\n";
