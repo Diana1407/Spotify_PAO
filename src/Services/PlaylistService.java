@@ -100,11 +100,13 @@ public class PlaylistService {
         int nr;
         nr = scanner.nextInt();
         System.out.println("Tracklist ");
+        SongService songService = SongService.getInstance();
         List<Song> arr = new ArrayList<>();
         for(int i=0; i<nr ; i++)
         {
-            ///Song song = SongService.readSong();
-            ///arr.add(song);
+
+            Song song = songService.readSong();
+            arr.add(song);
         }
         playlist.setSongs(arr);
 
@@ -115,8 +117,8 @@ public class PlaylistService {
         else playlist.setPrivacy(false);
 
         System.out.println("Owner");
-        ///User owner = PremiumUserService.readUser();
-        ///playlist.setOwner(owner);
+        User owner = PremiumUserService.getInstance().readPremiumUser();
+        playlist.setOwner(owner);
 
         return playlist;
 

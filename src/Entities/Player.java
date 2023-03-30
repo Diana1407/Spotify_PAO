@@ -1,34 +1,24 @@
 package Entities;
 
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class Player {
-    private int id;
     private boolean state;
     private Song currentSong;
     private Queue<Song> queue;
     //il vom face priority queue???
 
-    public Player(){}
+    public Player(){
+        this.queue = new LinkedList<>();
+    }
 
-    public Player(int id, boolean state, Song currentSong, Queue<Song> queue)
+    public Player(boolean state, Song currentSong, Queue<Song> queue)
     {
-        this.id = id;
         this.state = state;
         this.currentSong = currentSong;
         this.queue = queue;
     }
-
-    public int getId()
-    {
-        return id;
-    }
-
-    public void setId(int id)
-    {
-        this.id = id;
-    }
-
     public boolean getState()
     {
         return  state;
@@ -61,8 +51,7 @@ public class Player {
 
     @Override
     public String toString(){
-        String result = "Player id: " + id + "\n";
-        result += "State: " + state + "\n";
+        String result ="State: " + state + "\n";
         result += "Current Song: " + currentSong + "\n";
         if(queue != null) {
             for (Song song : queue) {

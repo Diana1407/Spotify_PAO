@@ -17,7 +17,7 @@ public class SongService {
         }
     }
 
-    private static SongService getInstance()
+    public static SongService getInstance()
     {
         if(instance == null)
         {

@@ -13,7 +13,7 @@ public class Main {
         Album album = new Album(7, "title", 5, s, "realease", artist);
         Song song = new Song(2,"nume", artist, album, 10, "pop");
 
-        System.out.println(song.toString());
+        System.out.println(song);
     }
 
 }
