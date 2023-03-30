@@ -28,7 +28,7 @@ public class PremiumUser extends User{
         return price;
     }
 
-    public void setprice(double price)
+    public void setPrice(double price)
     {
         this.price = price;
     }

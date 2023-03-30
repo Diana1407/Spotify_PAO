@@ -4,7 +4,6 @@ public class Song {
     private int id;
     private String name;
     private Artist artist;
-    private Album album;
     private int duration;
     private String genre;
 
@@ -15,7 +14,6 @@ public class Song {
         this.id = id;
         this.name = name;
         this.artist = artist;
-        this.album = album;
         this.duration = duration;
         this.genre = genre;
     }
@@ -44,14 +42,6 @@ public class Song {
         this.artist = artist;
     }
 
-    public Album getAlbum() {
-        return album;
-    }
-
-    public void setAlbum(Album album) {
-        this.album = album;
-    }
-
     public int getDuration() {
         return duration;
     }
@@ -73,7 +63,6 @@ public class Song {
         String result = "Song id: " + id + "\n";
         result += "Name: " + name + "\n";
         result += "Artist: " + artist.getUsername() + "\n";
-        result += "Album: " + album.getTitle() + "\n";
         result += "Duration: " + duration + "\n";
         result += "Genre: " + genre + "\n";
         result += "\n---------------------------------------------------------------------------------------------------------------------------\n";
