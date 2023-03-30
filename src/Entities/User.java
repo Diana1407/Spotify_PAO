@@ -55,4 +55,7 @@ public abstract class User {
     {
         this.password = password;
     }
+
+    @Override
+    public abstract String toString();
 }
