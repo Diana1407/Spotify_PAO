@@ -33,9 +33,22 @@ public class Playlist extends TrackList {
     @Override
     public String toString() {
         String privacyname;
-        if(privacy==true) privacyname="private"; else privacyname="public";
-        return ("Playlist name: " + this.title + '\n' + "Duration: " +
-               this.duration + '\n' + "Owner UserName" + this.owner.username + ". This playlist is" + privacyname);
-        ///lista de cantece
+        if(privacy==true)
+            privacyname="private";
+        else privacyname="public";
+
+
+        String result = "Playlist name: " + this.title + '\n' + "Duration: " + this.duration + '\n' +
+                "Owner UserName: " + this.owner.getUsername() + ". This playlist is: " + privacyname + '\n' + "The tracklist is: " + '\n';
+
+        for(int i=0;i<songs.size();i++)
+        {
+            result += songs.get(i).toString();
+        }
+
+
+        return result;
+
+
     }
 }
