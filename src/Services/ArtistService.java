@@ -39,7 +39,7 @@ public class ArtistService {
         boolean ok = false;
         for(int j = 0; j < this.artists.size(); j++)
         {
-            if(this.artists.get(j).getUsername() == name)
+            if(this.artists.get(j).getUsername().equals(name))
             {
                 artist = this.artists.get(j);
                 ok = true;

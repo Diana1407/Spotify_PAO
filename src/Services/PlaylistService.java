@@ -77,7 +77,7 @@ public class PlaylistService {
             }
         }
     }
-    public Playlist readPlaylist() throws ParseException{
+    public Playlist readPlaylist(){
         Scanner scanner = new Scanner(System.in);
         ///SongService songservice = SongService.getInstance();
        Playlist playlist = new Playlist();

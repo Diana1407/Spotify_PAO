@@ -83,7 +83,7 @@ public class AlbumService {
             }
         }
     }
-    public Album readAlbum() throws ParseException{
+    public Album readAlbum(){
         Scanner scanner = new Scanner(System.in);
         Album album = new Album();
         System.out.println("Id");

@@ -6,11 +6,21 @@ import Entities.Song;
 import java.util.Queue;
 
 public class PlayerService {
-    private final Player player;
+    private Player player;
 
-    public PlayerService(Player player) {
-        this.player = player;
+    private static PlayerService instance;
+
+    private PlayerService(){}
+
+    public static PlayerService getInstance()
+    {
+        if(instance == null)
+        {
+            instance = new PlayerService();
+        }
+        return instance;
     }
+
     public void play(Song song) {
         this.player.setCurrentSong(song);
         this.player.setState(true);

@@ -69,13 +69,13 @@ public class SongService {
         this.songs.add(song);
     }
 
-    public void deleteSongById(int i)
+    public void deleteSongByName(Song song)
     {
-        for(int j = 0; j < this.songs.size(); j++)
+        for(int i = 0; i < this.songs.size(); i++)
         {
-            if(this.songs.get(j).getId() == i)
+            if(this.songs.get(i).equals(song))
             {
-                this.songs.remove(j);
+                this.songs.remove(song);
                 break;
             }
         }
