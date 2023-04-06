@@ -39,7 +39,7 @@ public class SongService {
         boolean ok = false;
         for(int j = 0; j < this.songs.size(); j++)
         {
-            if(this.songs.get(j).getName() == name)
+            if(Objects.equals(this.songs.get(j).getName(), name))
             {
                 song = this.songs.get(j);
                 ok = true;
@@ -48,7 +48,7 @@ public class SongService {
         if(ok == true)
             return song;
         else
-            throw new SongService.SongNotFoundException("Artist not found with this name");
+            throw new SongService.SongNotFoundException("Song not found with this name");
     }
 
     public void updateSong(int i, Song song)

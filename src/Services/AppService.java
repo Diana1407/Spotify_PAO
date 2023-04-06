@@ -41,7 +41,15 @@ public class AppService {
         System.out.println(" 4 - Delete");
         System.out.println(" 5 - Exit");
     }
-
+    public void printOptionsPlaylist(){
+        System.out.println(" 0 - Show All");
+        System.out.println(" 1 - Show by Id");
+        System.out.println(" 2 - Add Playlist");
+        System.out.println(" 3 - Update");
+        System.out.println(" 4 - Delete");
+        System.out.println(" 5 - Add Song to playlist");
+        System.out.println(" 6 - Exit");
+    }
     public void printMenu()
     {
         System.out.println("0 - User");
@@ -297,9 +305,9 @@ public class AppService {
         }
     }
 
-    public void playlistMenu() {
+    public void playlistMenu() throws SongService.SongNotFoundException {
         while(true) {
-            printOptions1();
+            printOptionsPlaylist();
             int op;
             try {
                 op = scanner.nextInt();
@@ -345,10 +353,28 @@ public class AppService {
                 Playlist playlist = playlistService.getPlaylistById(i);
                 playlistService.deletePlaylist(playlist);
             } else if (op == 5) {
+
+                System.out.println("Provide playlist id to add song to");
+                int i;
+                try {
+                    i = scanner.nextInt();
+                } catch (Exception e){
+                    System.out.println("Wrong id!");
+                    i = scanner.nextInt();
+                }
+                Playlist playlist = playlistService.getPlaylistById(i);
+
+                System.out.println("Provide the name of the song you want to add");
+                String name = scanner.next();
+                Song song = songService.getSongByName(name);
+
+                playlistService.addSongToPlaylist(playlist,song);
+
+            } else if (op==6) {
                 break;
             }
+            }
         }
-    }
 
 
 

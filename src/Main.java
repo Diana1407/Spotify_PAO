@@ -1,6 +1,4 @@
-import Entities.Album;
-import Entities.Artist;
-import Entities.Song;
+import Entities.*;
 import Services.AlbumService;
 import Services.AppService;
 import Services.ArtistService;
@@ -16,8 +14,8 @@ public class Main {
 //        List<Song> s = new ArrayList<>();
 //        Album album = new Album(7, "title", 5, s, "realease", artist);
 //        Song song = new Song(2,"nume", artist, album, 10, "pop");
-//
-//        System.out.println(song);
+//        PremiumUser user = new PremiumUser(4, "email@mail.com", "dianasicristiana", "userpa55", "premium",5);
+//        Playlist playlist = new Playlist(4,"Primul meu playlist", 13 , s,  true, user );
 
         AppService appService = AppService.getInstance();
         appService.Menu();

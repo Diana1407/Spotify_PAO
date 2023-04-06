@@ -53,6 +53,13 @@ public class PlaylistService {
         }
     }
 
+    public void addSongToPlaylist(Playlist playlist, Song song)
+    {
+        List<Song> aux= playlist.getSongs();
+        aux.add(song);
+        playlist.setSongs(aux);
+    }
+
     public void addPlaylist(Playlist playlist){
         this.playlists.add(playlist);
     }
@@ -121,8 +128,6 @@ public class PlaylistService {
         playlist.setOwner(owner);
 
         return playlist;
-
-
 
     }
 }
