@@ -362,13 +362,13 @@ public class AppService {
                     System.out.println("Wrong id!");
                     i = scanner.nextInt();
                 }
-                Playlist playlist = playlistService.getPlaylistById(i);
+               /// Playlist playlist = playlistService.getPlaylistById(i);
 
                 System.out.println("Provide the name of the song you want to add");
                 String name = scanner.next();
                 Song song = songService.getSongByName(name);
 
-                playlistService.addSongToPlaylist(playlist,song);
+                playlistService.addSongToPlaylist(i, song);
 
             } else if (op==6) {
                 break;

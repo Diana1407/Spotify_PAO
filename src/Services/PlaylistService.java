@@ -53,8 +53,9 @@ public class PlaylistService {
         }
     }
 
-    public void addSongToPlaylist(Playlist playlist, Song song)
+    public void addSongToPlaylist(int playlistId, Song song)
     {
+        Playlist playlist = getPlaylistById(playlistId);
         List<Song> aux= playlist.getSongs();
         aux.add(song);
         playlist.setSongs(aux);

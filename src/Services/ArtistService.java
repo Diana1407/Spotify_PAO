@@ -33,7 +33,6 @@ public class ArtistService {
         return artists1;
     }
 
-
     public Artist getArtistByName(String name) throws ArtistNotFoundException {
         Artist artist = new Artist();
         boolean ok = false;
@@ -49,6 +48,11 @@ public class ArtistService {
             return artist;
         else
             throw new ArtistNotFoundException("Artist not found with this name");
+    }
+
+    public void printArtist(Artist artist)
+    {
+        System.out.println(artist.toString());
     }
 
     public void updateArtist(int i, Artist artist)
