@@ -112,7 +112,6 @@ public class PlaylistService {
         List<Song> arr = new ArrayList<>();
         for(int i=0; i<nr ; i++)
         {
-
             Song song = songService.readSong();
             arr.add(song);
         }

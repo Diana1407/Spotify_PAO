@@ -89,7 +89,7 @@ public class ArtistService {
     {
         Scanner scanner = new Scanner(System.in);
         Artist artist = new Artist();
-        System.out.println("Id");
+        System.out.println("Id:");
         try
         {
             artist.setId(scanner.nextInt());
