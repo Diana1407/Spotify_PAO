@@ -14,7 +14,7 @@
 - **clasa Player**: clasa pentru repartizarea studentilor in formatiuni de studiu
 - **clasa App**: clasa pentru repartizarea studentilor in formatiuni de studiu
 
-![diagrama](diagrama.png)
+![diagrama](spotify pao.png)
 
 Pe langa acestea programul mai cuprinde si clasele:
 - **clasele Service**: cuprinde toate functiile utile pentru realizarea comenzilor din meniu
