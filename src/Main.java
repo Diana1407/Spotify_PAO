@@ -1,6 +1,11 @@
 import Entities.*;
 import Services.*;
 
+import Config.DatabaseConfig;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +34,39 @@ public class Main {
 
         AppService appService = AppService.getInstance();
         appService.Menu();
-    }
 
+
+        DatabaseConfig.closeDatabaseConnection();
+    }
+//        Connection conn = null;
+//        try {
+//            // Step 1: Load the JDBC driver
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//
+//            // Step 2: Establish the connection
+//            String url = "jdbc:mysql://localhost:3306/spotify";
+//            String user = "root";
+//            String password = "user";
+//            conn = DriverManager.getConnection(url, user, password);
+//            System.out.println("Connected successfully to the database!");
+//        } catch (SQLException e) {
+//            System.err.println("Failed to connect to the database.");
+//            e.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            System.err.println("Could not find the JDBC driver class.");
+//            e.printStackTrace();
+//        } finally {
+//            // Step 3: Close the connection
+//            try {
+//                if (conn != null) {
+//                    conn.close();
+//                    System.out.println("Connection closed successfully.");
+//                }
+//            } catch (SQLException e) {
+//                System.err.println("Failed to close the database connection.");
+//                e.printStackTrace();
+//            }
+//        }
+//
+//    }
 }
