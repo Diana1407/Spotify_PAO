@@ -107,13 +107,10 @@ public class AlbumService {
         List<Song> arr = new ArrayList<>();
         SongService songService = SongService.getInstance();
 
-        for(int i=0; i<nr ; i++)
-        {
+        for(int i=0; i<nr ; i++) {
             Song song = songService.readSong();
             arr.add(song);
         }
-        album.setSongs(arr);
-
         return album;
 
 

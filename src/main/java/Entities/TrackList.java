@@ -6,7 +6,6 @@ public abstract class TrackList {
     protected int id;
     protected String title;
     protected int duration;
-    protected List<Song> songs;
 
     public TrackList(){}
 
@@ -15,15 +14,13 @@ public abstract class TrackList {
         this.id = ob.id;
         this.title = ob.title;
         this.duration = ob.duration;
-        this.songs = ob.songs;
     }
 
-    public TrackList(int id, String title, int duration, List<Song> songs)
+    public TrackList(int id, String title, int duration)
     {
         this.id = id;
         this.title=title;
         this.duration = duration;
-        this.songs = songs;
     }
 
 
@@ -45,13 +42,6 @@ public abstract class TrackList {
 
     public void setDuration(int duration) {
         this.duration = duration;
-    }
-
-    public List<Song> getSongs(){
-        return songs;
-    }
-    public void setSongs(List<Song> songs) {
-        this.songs = songs;
     }
 
     @Override

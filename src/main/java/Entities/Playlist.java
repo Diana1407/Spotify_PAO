@@ -5,14 +5,16 @@ import java.util.List;
 public class Playlist extends TrackList {
     private boolean privacy;
     private User owner;
+    private List<Song> songs;
 
     public Playlist(){}
 
-    public Playlist(int id, String title, int duration, List<Song> songs, boolean privacy, User owner)
+    public Playlist(int id, String title, int duration, boolean privacy, User owner, List<Song> songs)
     {
-        super(id, title, duration, songs);
+        super(id, title, duration);
         this.privacy = privacy;
         this.owner = owner;
+        this.songs = songs;
     }
 
     public boolean getPrivacy(){
@@ -23,11 +25,19 @@ public class Playlist extends TrackList {
     {
         this.privacy = privacy;
     }
+
     public User getOwner(){
         return owner;
     }
     public void setOwner(User owner){
         this.owner = owner;
+    }
+
+    public List<Song> getSongs(){
+        return songs;
+    }
+    public void setSongs(List<Song> songs){
+        this.songs = songs;
     }
 
     @Override
