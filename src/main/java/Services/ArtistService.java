@@ -50,6 +50,19 @@ public class ArtistService {
             throw new ArtistNotFoundException("Artist not found with this name");
     }
 
+    public Artist getArtistById(int i)
+    {
+        Artist artist = new Artist();
+        for(int j = 0; j < this.artists.size(); j++)
+        {
+            if(this.artists.get(j).getId() == i)
+            {
+                artist = this.artists.get(j);
+            }
+        }
+        return artist;
+    }
+
     public void printArtist(Artist artist)
     {
         System.out.println(artist.toString());
