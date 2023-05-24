@@ -173,7 +173,7 @@ public class ReadWriteCSV {
         return albums;
     }
 
-    public static void writePlaylist(int id, String title, int duration, boolean privacy, int ownerId)
+    public static void writePlaylist(int id, String title, int duration, String privacy, int ownerId)
     {
         String path = "src\\main\\java\\Files\\Playlist.csv";
         try
@@ -212,7 +212,7 @@ public class ReadWriteCSV {
                 int id = Integer.parseInt(row[0]);
                 String title = row[1];
                 int duration = Integer.parseInt(row[2]);
-                boolean privacy = Boolean.parseBoolean(row[3]);
+                String privacy = row[3];
                 int ownerId = Integer.parseInt(row[4]);
 
                 Playlist playlist = new Playlist(id, title, duration, privacy, ownerId, null);

@@ -3,13 +3,13 @@ package Entities;
 import java.util.List;
 
 public class Playlist extends TrackList {
-    private boolean privacy;
+    private String privacy;
     private int ownerId;
     private List<Song> songs;
 
     public Playlist(){}
 
-    public Playlist(int id, String title, int duration, boolean privacy, int ownerId, List<Song> songs)
+    public Playlist(int id, String title, int duration, String privacy, int ownerId, List<Song> songs)
     {
         super(id, title, duration);
         this.privacy = privacy;
@@ -17,11 +17,11 @@ public class Playlist extends TrackList {
         this.songs = songs;
     }
 
-    public boolean getPrivacy(){
+    public String getPrivacy(){
         return privacy;
     }
 
-    public void setPrivacy(boolean privacy)
+    public void setPrivacy(String privacy)
     {
         this.privacy = privacy;
     }
@@ -42,14 +42,8 @@ public class Playlist extends TrackList {
 
     @Override
     public String toString() {
-        String privacyname;
-        if(privacy)
-            privacyname="private";
-        else privacyname="public";
-
-
         StringBuilder result = new StringBuilder("Playlist name: " + this.title + '\n' + "Duration: " + this.duration + '\n');
-        // +"Owner UserName: " + this.owner.getUsername() + ". This playlist is: " + privacyname + '\n' + "The tracklist is: " + '\n';
+        // +"Owner UserName: " + this.owner.getUsername() + ". This playlist is: " + privacy + '\n' + "The tracklist is: " + '\n';
 
         for (Song song : songs) {
             result.append(song.toString());

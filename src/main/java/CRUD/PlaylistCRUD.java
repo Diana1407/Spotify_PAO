@@ -23,8 +23,8 @@ public class PlaylistCRUD {
                 "(id int PRIMARY KEY," +
                 "title varchar(40)," +
                 "duration int," +
-                "privacy BIT," +
-                "OwnerID int" +
+                "privacy varchar(40)," +
+                "ownerID int" +
                 ")";
 
         Connection connection = DatabaseConfig.getDatabaseConnection();
@@ -65,12 +65,12 @@ public class PlaylistCRUD {
         }
     }
 
-    public void addPlaylist(int id, String title, int duration, Boolean privacy, int OwnerID)
+    public void addPlaylist(int id, String title, int duration, String privacy, int ownerId)
     {
         String s = id + ",\"" + title + "\", \"" + duration +
-                "\", \"" + privacy + "\", \"" + OwnerID + "\"";
+                "\", \"" + privacy + "\", \"" + ownerId + "\"";
 
-        String insertPlaylistSql = "INSERT INTO Playlist(id, title, duration, privacy, OwnerID) VALUES (" + s + ");";
+        String insertPlaylistSql = "INSERT INTO Playlist(id, title, duration, privacy, ownerId) VALUES (" + s + ");";
 
         Connection connection = DatabaseConfig.getDatabaseConnection();
 
@@ -100,7 +100,7 @@ public class PlaylistCRUD {
                 System.out.println("Playlist ID: " + resultSet.getInt(1));
                 System.out.println("Playlist title: " + resultSet.getString(2));
                 System.out.println("Playlist duration: " + resultSet.getInt(3));
-                System.out.println("Playlist privacy: " + resultSet.getBoolean(4));
+                System.out.println("Playlist privacy: " + resultSet.getString(4));
                 System.out.println("Playlist de modif in nume OwnerID: " + resultSet.getInt(5));
                 System.out.println();
             }
@@ -134,7 +134,7 @@ public class PlaylistCRUD {
         }
     }
 
-    public void updatePlaylistPrivacy(boolean privacy, int id)
+    public void updatePlaylistPrivacy(String privacy, int id)
     {
         String updatePlaylistPrivacySql = "UPDATE Playlist SET privacy=? WHERE id=?";
 
@@ -142,7 +142,7 @@ public class PlaylistCRUD {
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(updatePlaylistPrivacySql))
         {
-            preparedStatement.setBoolean(1, privacy);
+            preparedStatement.setString(1, privacy);
             preparedStatement.setInt(2, id);
 
             preparedStatement.executeUpdate();
@@ -174,7 +174,7 @@ public class PlaylistCRUD {
     private Playlist mapToPlaylist(ResultSet resultSet) throws SQLException
     {
         if(resultSet.next())
-            return new Playlist(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getBoolean(4), resultSet.getInt(5), null);
+            return new Playlist(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getString(4), resultSet.getInt(5), null);
 
         return null;
     }

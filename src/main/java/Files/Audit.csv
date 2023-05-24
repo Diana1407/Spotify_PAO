@@ -1,3 +1,5 @@
-configure tables,2023-05-22 01:02:04
-load data,2023-05-22 01:02:04
-closed connection with db,2023-05-22 01:02:07
+configure tables,2023-05-24 22:54:55
+load data,2023-05-24 22:54:55
+add Playlist,2023-05-24 22:55:04
+prints all Playlists,2023-05-24 22:55:16
+closed connection with db,2023-05-24 22:55:19
