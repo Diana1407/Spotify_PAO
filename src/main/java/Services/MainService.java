@@ -1,9 +1,6 @@
 package Services;
 
-import CRUD.AlbumCRUD;
-import CRUD.ArtistCRUD;
-import CRUD.PlaylistCRUD;
-import CRUD.PremiumUserCRUD;
+import CRUD.*;
 import Config.DatabaseConfig;
 import Entities.*;
 
@@ -20,6 +17,7 @@ public class MainService
     public static List<PremiumUser> premiumUsers = new ArrayList<>();
     public static List<Album> albums = new ArrayList<>();
     public static List<Playlist> playlists = new ArrayList<>();
+    public static List<Song> songs = new ArrayList<>();
 
     AuditService auditService = AuditService.getInstance();
 
@@ -27,6 +25,7 @@ public class MainService
     PremiumUserCRUD premiumUserCRUD = PremiumUserCRUD.getInstance();
     AlbumCRUD albumCRUD = AlbumCRUD.getInstance();
     PlaylistCRUD playlistCRUD = PlaylistCRUD.getInstance();
+    SongCRUD songCRUD = SongCRUD.getInstance();
 
     public void loadData()
     {
@@ -34,11 +33,13 @@ public class MainService
         premiumUsers = ReadWriteCSV.readPremiumUser();
         albums = ReadWriteCSV.readAlbum();
         playlists = ReadWriteCSV.readPlaylist();
+        songs = ReadWriteCSV.readSong();
 
         artistCRUD.add();
         premiumUserCRUD.add();
         albumCRUD.add();
         playlistCRUD.add();
+        songCRUD.add();
 
         try
         {
@@ -56,6 +57,7 @@ public class MainService
         premiumUserCRUD.createTable();
         albumCRUD.createTable();
         playlistCRUD.createTable();
+        songCRUD.createTable();
 
         try
         {
@@ -1134,6 +1136,234 @@ public class MainService
         try
         {
             auditService.logAction("prints all Playlists");
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    public void addSong()
+    {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("Song ID: ");
+        int id;
+
+        while(true)
+        {
+            try
+            {
+                id = Integer.parseInt(scan.nextLine());
+
+                boolean ok = true;
+                for(Song a: songs)
+                {
+                    if(a.getId() == id)
+                    {
+                        ok = false;
+                        break;
+                    }
+                }
+
+                if(!ok)
+                    throw new Exception();
+                else
+                    break;
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("Introduce an integer value!");
+                System.out.print("Song ID: ");
+            }
+
+            catch (Exception e)
+            {
+                System.out.println("This Song ID already exists!");
+                System.out.print("Song ID: ");
+            }
+        }
+
+        System.out.print("Name: ");
+        String name = scan.nextLine();
+
+        System.out.print("Artist ID: ");
+        int artistId;
+        while(true) {
+            try {
+                artistId = Integer.parseInt(scan.nextLine());
+
+                boolean ok = false;
+                for (Artist a : artists) {
+                    if (a.getId() == artistId) {
+                        ok = true;
+                        break;
+                    }
+                }
+
+                if (!ok)
+                    throw new Exception();
+                else
+                    break;
+            } catch (Exception e) {
+                System.out.println("Introduce an existing id as an integer value!");
+                System.out.print("Artist ID: ");
+            }
+        }
+
+
+            System.out.print("Album ID: ");
+            int albumId;
+            while (true) {
+                try {
+                    albumId = Integer.parseInt(scan.nextLine());
+
+                    boolean ok = false;
+                    for (Album a : albums) {
+                        if (a.getId() == albumId) {
+                            ok = true;
+                            break;
+                        }
+                    }
+
+                    if (!ok)
+                        throw new Exception();
+                    else
+                        break;
+                } catch (Exception e) {
+                    System.out.println("Introduce an existing id as an integer value!");
+                    System.out.print("Album Id: ");
+                }
+            }
+
+        System.out.print("Duration: ");
+        int duration;
+
+        while(true)
+        {
+            try
+            {
+                duration = Integer.parseInt(scan.nextLine());
+                break;
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("Introduce an integer value!");
+                System.out.print("Duration: ");
+            }
+        }
+
+
+
+        System.out.print("Link: ");
+        String link = scan.nextLine();
+
+        songs.add(new Song(id, name, artistId, albumId, duration, link));
+        ReadWriteCSV.writeSong(id, name, artistId, albumId, duration, link);
+        songCRUD.addSong(id, name, artistId, albumId, duration, link);
+
+        try
+        {
+            auditService.logAction("add PremiumUser");
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void printSongById()
+    {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("Song ID: ");
+        int id;
+
+        while(true)
+        {
+            try
+            {
+                id = Integer.parseInt(scan.nextLine());
+                break;
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("Introduce an integer value!");
+                System.out.print("Song ID: ");
+            }
+        }
+
+        if(songCRUD.getSongById(id) != null)
+            System.out.println(songCRUD.getSongById(id).toString());
+        else
+            System.out.println("The song with this ID does not exist!");
+
+        try
+        {
+            auditService.logAction("print Song by id");
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteSongById()
+    {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("Song ID: ");
+        int id;
+
+        while(true)
+        {
+            try
+            {
+                id = Integer.parseInt(scan.nextLine());
+                break;
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("Introduce an integer value!");
+                System.out.print("Song ID: ");
+            }
+        }
+
+        boolean ok = false;
+        for(Song a: songs)
+        {
+            if(id == a.getId())
+            {
+                ok = true;
+                break;
+            }
+        }
+
+        if(ok)
+        {
+            songCRUD.deleteSongById(id);
+            System.out.println("Song deleted succesfully!");
+        }
+        else
+            System.out.println("The Song with this ID does not exist!");
+
+        try
+        {
+            auditService.logAction("delete Song");
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void printSongs()
+    {
+        songCRUD.showSongs();
+
+        try
+        {
+            auditService.logAction("prints all Songs");
         }
         catch (IOException e)
         {

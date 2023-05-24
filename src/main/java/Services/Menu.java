@@ -198,29 +198,29 @@ public class Menu {
                 System.out.println("-----------------------------------");
             }
 
-//            if(opt == 21)
-//            {
-//                service.addSong();
-//                System.out.println("-----------------------------------");
-//            }
-//
-//            if(opt == 22)
-//            {
-//                service.printSongs();
-//                System.out.println("-----------------------------------");
-//            }
-//
-//            if(opt == 23)
-//            {
-//                service.printSongById();
-//                System.out.println("-----------------------------------");
-//            }
-//
-//            if(opt == 24)
-//            {
-//                service.deleteSongById();
-//                System.out.println("-----------------------------------");
-//            }
+            if(opt == 21)
+            {
+                service.addSong();
+                System.out.println("-----------------------------------");
+            }
+
+            if(opt == 22)
+            {
+                service.printSongs();
+                System.out.println("-----------------------------------");
+            }
+
+            if(opt == 23)
+            {
+                service.printSongById();
+                System.out.println("-----------------------------------");
+            }
+
+            if(opt == 24)
+            {
+                service.deleteSongById();
+                System.out.println("-----------------------------------");
+            }
 
             if(opt != 0)
             {
