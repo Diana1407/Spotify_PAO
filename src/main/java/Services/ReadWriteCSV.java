@@ -1,9 +1,6 @@
 package Services;
 
-import Entities.Album;
-import Entities.Artist;
-import Entities.Playlist;
-import Entities.PremiumUser;
+import Entities.*;
 
 import java.io.*;
 import java.sql.SQLException;
@@ -28,7 +25,7 @@ public class ReadWriteCSV {
         }
         catch (Exception e)
         {
-            e.printStackTrace();;
+            e.printStackTrace();
         }
     }
 
@@ -83,7 +80,7 @@ public class ReadWriteCSV {
         }
         catch (Exception e)
         {
-            e.printStackTrace();;
+            e.printStackTrace();
         }
     }
 
@@ -138,7 +135,7 @@ public class ReadWriteCSV {
         }
         catch (Exception e)
         {
-            e.printStackTrace();;
+            e.printStackTrace();
         }
     }
 
@@ -231,5 +228,58 @@ public class ReadWriteCSV {
         return playlists;
     }
 
+    public static void writeSong(int id, String name, int artistId, int albumId, int duration, String link)
+    {
+        String path = "src\\main\\java\\Files\\Song.csv";
+        try
+        {
+            FileWriter fileWriter = new FileWriter(path, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            PrintWriter printWriter = new PrintWriter(bufferedWriter);
 
+            String artistString = id + "," + name + "," + artistId + "," + albumId + "," + duration + "," + link;
+            printWriter.println(artistString);
+
+            printWriter.flush();
+            printWriter.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static List<Song> readSong()
+    {
+        List<Song> songs = new ArrayList<>();
+        String path = "src\\main\\java\\Files\\Song.csv";
+
+        BufferedReader bufferedReader;
+        String line;
+
+        try
+        {
+            bufferedReader = new BufferedReader(new FileReader(path));
+            bufferedReader.readLine();
+            while((line = bufferedReader.readLine()) != null)
+            {
+                String[] row = line.split(",");
+                int id = Integer.parseInt(row[0]);
+                String name = row[1];
+                int artistId = Integer.parseInt(row[2]);
+                int albumId = Integer.parseInt(row[3]);
+                int duration = Integer.parseInt(row[4]);
+                String link = row[5];
+                Song song = new Song(id, name, artistId, albumId, duration, link);
+                songs.add(song);
+            }
+            bufferedReader.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return songs;
+    }
 }

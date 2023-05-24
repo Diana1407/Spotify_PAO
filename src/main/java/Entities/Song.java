@@ -1,23 +1,26 @@
 package Entities;
 
+import CRUD.AlbumCRUD;
+import CRUD.ArtistCRUD;
+
 public class Song {
     private int id;
     private String name;
-    private Artist artist;
-    private Album album;
+    private int artistId;
+    private int albumId;
     private int duration;
-    private String genre;
+    private String link;
 
     public Song() {
     }
 
-    public Song(int id, String name, Artist artist, Album album, int duration, String genre) {
+    public Song(int id, String name, int artistId, int albumId, int duration, String link) {
         this.id = id;
         this.name = name;
-        this.artist = artist;
-        this.album = album;
+        this.artistId = artistId;
+        this.albumId = albumId;
         this.duration = duration;
-        this.genre = genre;
+        this.link = link;
     }
 
     public int getId() {
@@ -36,20 +39,20 @@ public class Song {
         this.name = name;
     }
 
-    public Artist getArtist() {
-        return artist;
+    public int getArtistId() {
+        return artistId;
     }
 
-    public void setArtist(Artist artist) {
-        this.artist = artist;
+    public void setArtistId(int artistId) {
+        this.artistId = artistId;
     }
 
-    public Album getAlbum() {
-        return album;
+    public int getAlbumId() {
+        return albumId;
     }
 
-    public void setAlbum(Album album) {
-        this.album = album;
+    public void setAlbumId(int albumId) {
+        this.albumId = albumId;
     }
 
     public int getDuration() {
@@ -60,22 +63,24 @@ public class Song {
         this.duration = duration;
     }
 
-    public String getGenre() {
-        return genre;
+    public String getLink() {
+        return link;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setLink(String link) {
+        this.link = link;
     }
 
     @Override
     public String toString() {
         String result = "Song id: " + id + "\n";
         result += "Name: " + name + "\n";
+        Artist artist = ArtistCRUD.getInstance().getArtistById(artistId);
         result += "Artist: " + artist.getUsername() + "\n";
+        Album album = AlbumCRUD.getInstance().getAlbumById(albumId);
         result += "Album: " + album.getTitle() + "\n";
         result += "Duration: " + duration + "\n";
-        result += "Genre: " + genre + "\n";
+        ///result += "link: " + link + "\n"; sa dam play de aici
         result += "\n---------------------------------------------------------------------------------------------------------------------------\n";
         return result;
     }
