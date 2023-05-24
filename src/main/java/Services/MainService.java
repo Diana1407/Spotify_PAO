@@ -944,7 +944,7 @@ public class MainService
         }
 
         System.out.print("Privacy: ");
-        boolean privacy = scan.nextBoolean();
+        String privacy = scan.nextLine();
 
         System.out.print("User ID: ");
         int ownerId;
@@ -1060,35 +1060,7 @@ public class MainService
         if(ok)
         {
             System.out.print("New privacy: ");
-            boolean privacy;
-
-            while(true)
-            {
-                try
-                {
-                    privacy = scan.nextBoolean();
-
-                    boolean okk = true;
-                    for(Playlist a: playlists)
-                    {
-                        if(a.getPrivacy() == privacy)
-                        {
-                            okk = false;
-                            break;
-                        }
-                    }
-
-                    if(!okk)
-                        throw new Exception();
-                    else
-                        break;
-                }
-                catch (Exception e)
-                {
-                    System.out.println("Introduce an boolean value!");
-                    System.out.print("Privacy: ");
-                }
-            }
+            String privacy = scan.nextLine();
 
             playlistCRUD.updatePlaylistPrivacy(privacy, id);
         }
@@ -1097,7 +1069,7 @@ public class MainService
 
         try
         {
-            auditService.logAction("update playlist");
+            auditService.logAction("update Playlist");
         }
         catch (IOException e)
         {

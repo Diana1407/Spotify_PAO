@@ -119,13 +119,13 @@ public class PlaylistService {
 
         System.out.println("Privacy ");
         String priv = scanner.next();
-        if(priv=="private" || priv == "Private")
-            playlist.setPrivacy(true);
-        else playlist.setPrivacy(false);
+//        if(priv=="private" || priv == "Private")
+//            playlist.setPrivacy(true);
+//        else playlist.setPrivacy(false);
 
         System.out.println("Owner");
         User owner = PremiumUserService.getInstance().readPremiumUser();
-        playlist.setOwner(owner);
+        //playlist.setOwner(owner);
 
         return playlist;
 

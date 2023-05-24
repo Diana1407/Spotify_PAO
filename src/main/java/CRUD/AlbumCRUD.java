@@ -64,12 +64,12 @@ public class AlbumCRUD {
         }
     }
 
-    public void addAlbum(int id, String title, int duration, String releasedate, int ArtistID)
+    public void addAlbum(int id, String title, int duration, String releasedate, int artistID)
     {
         String s = id + ",\"" + title + "\", \"" + duration +
-                "\", \"" + releasedate + "\", \"" + ArtistID + "\"";
+                "\", \"" + releasedate + "\", \"" + artistID + "\"";
 
-        String insertArtistSql = "INSERT INTO Album(id, title, duration, releasedate,artist_id) VALUES ("+ s +")";
+        String insertArtistSql = "INSERT INTO Album(id, title, duration, releasedate, artistId) VALUES ("+ s +")";
 
         Connection connection = DatabaseConfig.getDatabaseConnection();
 
