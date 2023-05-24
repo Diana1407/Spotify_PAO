@@ -23,9 +23,9 @@ public class SongCRUD {
                 "(id int PRIMARY KEY, " +
                 "name varchar(40), " +
                 "artistId int, " +
-                "albumId int" +
-                "duration int" +
-                "link varchar(40) )";
+                "albumId int, " +
+                "duration int, " +
+                "link varchar(40))";
 
         Connection connection = DatabaseConfig.getDatabaseConnection();
 
@@ -70,7 +70,7 @@ public class SongCRUD {
         String s = id + ",\"" + name + "\", \"" + artistId +
                 "\", \"" + albumId + "\", \"" + duration + "\", \"" + link + "\"";
 
-        String insertSongSql = "INSERT INTO Song(id, name, artistId, albumId, duration ,link) VALUES ("+ s +")";
+        String insertSongSql = "INSERT INTO Song(id, name, artistId, albumId, duration, link) VALUES ("+ s +")";
 
         Connection connection = DatabaseConfig.getDatabaseConnection();
 

@@ -1263,7 +1263,7 @@ public class MainService
 
         try
         {
-            auditService.logAction("add PremiumUser");
+            auditService.logAction("add Song");
         }
         catch (IOException e)
         {
