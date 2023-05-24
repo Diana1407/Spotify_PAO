@@ -35,6 +35,7 @@ public class Album extends TrackList {
     public String toString() {
         String result = "Album name: " + this.title + '\n' + "Duration: " +
                 this.duration + '\n' + "Release Date: " + this.releasedate + '\n' + "Artist Name: " ;//+ this.artist.getUsername() + '\n';
+
         return result;
     }
 }
