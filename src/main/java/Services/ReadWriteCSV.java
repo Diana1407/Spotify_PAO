@@ -1,6 +1,8 @@
 package Services;
 
+import Entities.Album;
 import Entities.Artist;
+import Entities.Playlist;
 import Entities.PremiumUser;
 
 import java.io.*;
@@ -116,7 +118,118 @@ public class ReadWriteCSV {
         {
             e.printStackTrace();
         }
-
         return premiumUsers;
     }
+
+    public static void writeAlbum(int id, String title, int duration, String releaseDate, int artistId)
+    {
+        String path = "src\\main\\java\\Files\\Album.csv";
+        try
+        {
+            FileWriter fileWriter = new FileWriter(path, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            PrintWriter printWriter = new PrintWriter(bufferedWriter);
+
+            String albumString = id + "," + title + "," + duration + "," + releaseDate + "," + artistId;
+            printWriter.println(albumString);
+
+            printWriter.flush();
+            printWriter.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();;
+        }
+    }
+
+    public static List<Album> readAlbum()
+    {
+        List<Album> albums = new ArrayList<>();
+        String path = "src\\main\\java\\Files\\Album.csv";
+
+        BufferedReader bufferedReader;
+        String line;
+
+        try
+        {
+            bufferedReader = new BufferedReader(new FileReader(path));
+            bufferedReader.readLine();
+            while((line = bufferedReader.readLine()) != null)
+            {
+                String[] row = line.split(",");
+                int id = Integer.parseInt(row[0]);
+                String title = row[1];
+                int duration = Integer.parseInt(row[2]);
+                String releaseDate = row[3];
+                int artistId = Integer.parseInt(row[4]);
+
+                Album album = new Album(id, title, duration, releaseDate, artistId);
+                albums.add(album);
+            }
+            bufferedReader.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return albums;
+    }
+
+    public static void writePlaylist(int id, String title, int duration, boolean privacy, int ownerId)
+    {
+        String path = "src\\main\\java\\Files\\Playlist.csv";
+        try
+        {
+            FileWriter fileWriter = new FileWriter(path, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            PrintWriter printWriter = new PrintWriter(bufferedWriter);
+
+            String playlistString = id + "," + title + "," + duration + "," + privacy + "," + ownerId;
+            printWriter.println(playlistString);
+
+            printWriter.flush();
+            printWriter.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static List<Playlist> readPlaylist()
+    {
+        List<Playlist> playlists = new ArrayList<>();
+        String path = "src\\main\\java\\Files\\Playlist.csv";
+
+        BufferedReader bufferedReader;
+        String line;
+
+        try
+        {
+            bufferedReader = new BufferedReader(new FileReader(path));
+            bufferedReader.readLine();
+            while((line = bufferedReader.readLine()) != null)
+            {
+                String[] row = line.split(",");
+                int id = Integer.parseInt(row[0]);
+                String title = row[1];
+                int duration = Integer.parseInt(row[2]);
+                boolean privacy = Boolean.parseBoolean(row[3]);
+                int ownerId = Integer.parseInt(row[4]);
+
+                Playlist playlist = new Playlist(id, title, duration, privacy, ownerId, null);
+                playlists.add(playlist);
+            }
+            bufferedReader.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return playlists;
+    }
+
+
 }
