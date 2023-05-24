@@ -1,5 +1,7 @@
 package Entities;
 
+import CRUD.PremiumUserCRUD;
+
 import java.util.List;
 
 public class Playlist extends TrackList {
@@ -42,8 +44,9 @@ public class Playlist extends TrackList {
 
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder("Playlist name: " + this.title + '\n' + "Duration: " + this.duration + '\n');
-        // +"Owner UserName: " + this.owner.getUsername() + ". This playlist is: " + privacy + '\n' + "The tracklist is: " + '\n';
+        PremiumUser user = PremiumUserCRUD.getInstance().getPremiumUserById(ownerId);
+        StringBuilder result = new StringBuilder("Playlist name: " + this.title + '\n' + "Duration: " + this.duration + '\n'
+         +"Owner UserName: " + user.getUsername() + ". This playlist is: " + privacy + '\n' + "The tracklist is: " + '\n');
 
         for (Song song : songs) {
             result.append(song.toString());

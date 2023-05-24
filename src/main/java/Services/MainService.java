@@ -17,6 +17,7 @@ public class MainService
     public static List<PremiumUser> premiumUsers = new ArrayList<>();
     public static List<Album> albums = new ArrayList<>();
     public static List<Playlist> playlists = new ArrayList<>();
+
     public static List<Song> songs = new ArrayList<>();
 
     AuditService auditService = AuditService.getInstance();
@@ -1077,6 +1078,66 @@ public class MainService
         {
             e.printStackTrace();
         }
+    }
+    public void AddSongToPlaylist()
+    {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("Choose the id of the playlist");
+        int playlistId;
+        while (true) {
+            try {
+                playlistId = Integer.parseInt(scan.nextLine());
+
+                boolean ok = false;
+                for (Playlist a : playlists) {
+                    if (a.getId() == playlistId) {
+                        ok = true;
+                        break;
+                    }
+                }
+
+                if (!ok)
+                    throw new Exception();
+                else
+                    break;
+            } catch (Exception e) {
+                System.out.println("Introduce an existing id as an integer value!");
+                System.out.print("Playlist Id: ");
+            }
+        }
+
+        System.out.println("Choose the id of the song you want to add");
+        int songId;
+        while (true) {
+            try {
+                songId = Integer.parseInt(scan.nextLine());
+
+                boolean ok = false;
+                for (Song a : songs) {
+                    if (a.getId() == songId) {
+                        ok = true;
+                        break;
+                    }
+                }
+
+                if (!ok)
+                    throw new Exception();
+                else
+                    break;
+            } catch (Exception e) {
+                System.out.println("Introduce an existing id as an integer value!");
+                System.out.print("Song Id: ");
+            }
+        }
+
+        Playlist playlist = playlistCRUD.getPlaylistById(playlistId);
+        Song song = songCRUD.getSongById(songId);
+
+        List<Song> songList = playlist.getSongs();
+        songList.add(song);
+        playlist.setSongs(songList);
+
     }
 
     public void deletePlaylistById()
