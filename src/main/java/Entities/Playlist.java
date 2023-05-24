@@ -4,16 +4,16 @@ import java.util.List;
 
 public class Playlist extends TrackList {
     private boolean privacy;
-    private User owner;
+    private int ownerId;
     private List<Song> songs;
 
     public Playlist(){}
 
-    public Playlist(int id, String title, int duration, boolean privacy, User owner, List<Song> songs)
+    public Playlist(int id, String title, int duration, boolean privacy, int ownerId, List<Song> songs)
     {
         super(id, title, duration);
         this.privacy = privacy;
-        this.owner = owner;
+        this.ownerId = ownerId;
         this.songs = songs;
     }
 
@@ -26,11 +26,11 @@ public class Playlist extends TrackList {
         this.privacy = privacy;
     }
 
-    public User getOwner(){
-        return owner;
+    public int getOwnerId(){
+        return ownerId;
     }
-    public void setOwner(User owner){
-        this.owner = owner;
+    public void setOwnerId(int ownerId){
+        this.ownerId = ownerId;
     }
 
     public List<Song> getSongs(){
@@ -43,21 +43,19 @@ public class Playlist extends TrackList {
     @Override
     public String toString() {
         String privacyname;
-        if(privacy==true)
+        if(privacy)
             privacyname="private";
         else privacyname="public";
 
 
-        String result = "Playlist name: " + this.title + '\n' + "Duration: " + this.duration + '\n' +
-                "Owner UserName: " + this.owner.getUsername() + ". This playlist is: " + privacyname + '\n' + "The tracklist is: " + '\n';
+        StringBuilder result = new StringBuilder("Playlist name: " + this.title + '\n' + "Duration: " + this.duration + '\n');
+        // +"Owner UserName: " + this.owner.getUsername() + ". This playlist is: " + privacyname + '\n' + "The tracklist is: " + '\n';
 
-        for(int i=0;i<songs.size();i++)
-        {
-            result += songs.get(i).toString();
+        for (Song song : songs) {
+            result.append(song.toString());
         }
 
-
-        return result;
+        return result.toString();
 
 
     }
