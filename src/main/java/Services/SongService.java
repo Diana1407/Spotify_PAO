@@ -98,7 +98,7 @@ public class SongService {
 
         System.out.println("Artist: ");
         Artist artist = artistService.readArtist();
-        song.setArtist(artist);
+        ///song.setArtist(artist);
 
         System.out.println("Duration in seconds: ");
         try
@@ -110,8 +110,8 @@ public class SongService {
             song.setDuration(scanner.nextInt());
         }
 
-        System.out.println("Genre: ");
-        song.setGenre(scanner.next());
+        System.out.println("Link: ");
+        song.setLink(scanner.next());
 
         return song;
     }
