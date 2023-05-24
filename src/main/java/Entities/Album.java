@@ -4,15 +4,15 @@ import java.util.List;
 
 public class Album extends TrackList {
     private String releasedate;
-    private Artist artist;
+    private int artistId;
 
     public Album() {
     }
 
-    public Album(int id, String title, int duration, List<Song> songs, String ReleaseDate, Artist artist) {
-        super(id, title, duration, songs);
+    public Album(int id, String title, int duration, String ReleaseDate, int artistId) {
+        super(id, title, duration);
         this.releasedate = ReleaseDate;
-        this.artist = artist;
+        this.artistId = artistId;
     }
 
     public String getReleasedate() {
@@ -23,21 +23,18 @@ public class Album extends TrackList {
         this.releasedate = releasedate;
     }
 
-    public Artist getArtist() {
-        return artist;
+    public int getArtistId() {
+        return artistId;
     }
 
-    public void setArtist() {
-        this.artist = artist;
+    public void setArtistId() {
+        this.artistId = artistId;
     }
 
     @Override
     public String toString() {
         String result = "Album name: " + this.title + '\n' + "Duration: " +
-                this.duration + '\n' + "Release Date: " + this.releasedate + '\n' + "Artist Name: " + this.artist.getUsername() + '\n' + "The tracklist is: \n";
-        for (int i = 0; i < songs.size(); i++) {
-            result += songs.get(i).toString();
-        }
+                this.duration + '\n' + "Release Date: " + this.releasedate + '\n' + "Artist Name: " ;//+ this.artist.getUsername() + '\n';
         return result;
     }
 }

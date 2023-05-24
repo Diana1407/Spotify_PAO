@@ -20,7 +20,7 @@ public class Main {
         PremiumUserService premiumUserService = PremiumUserService.getInstance();
         Artist artist = new Artist(5, "artist@mail.com", "artist", "artistpa55", 8);
         artistService.addArtist(artist);
-        Album album = new Album(7, "title", 5, songService.getSongs(), "realease", artist);
+        Album album = new Album(7, "title", 5, "realease", artist.getId());
         albumService.addAlbum(album);
         Song song = new Song(2,"nume", artist, album, 10, "pop");
         songService.addSongs(song);
@@ -28,7 +28,7 @@ public class Main {
         songService.addSongs(song2);
         PremiumUser user = new PremiumUser(4, "email@mail.com", "dianasicristiana", "userpa55", "premium",5);
         premiumUserService.addPremiumUser(user);
-        Playlist playlist = new Playlist(4,"Primul meu playlist", 13 , true, user, songService.getSongs() );
+        Playlist playlist = new Playlist(4,"Primul meu playlist", 13 , true, user.getId(), songService.getSongs() );
         playlistService.addPlaylist(playlist);
         ///artistService.printArtist(artist);
 
