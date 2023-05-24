@@ -114,7 +114,7 @@ public class AlbumCRUD {
         }
     }
 
-    public Album getAlbumbyId(int id)
+    public Album getAlbumById(int id)
     {
         String selectSql = "SELECT * FROM Album WHERE id=?";
 

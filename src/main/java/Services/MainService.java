@@ -1,6 +1,8 @@
 package Services;
 
+import CRUD.AlbumCRUD;
 import CRUD.ArtistCRUD;
+import CRUD.PlaylistCRUD;
 import CRUD.PremiumUserCRUD;
 import Config.DatabaseConfig;
 import Entities.*;
@@ -52,7 +54,7 @@ public class MainService
     {
         artistCRUD.createTable();
         premiumUserCRUD.createTable();
-        albumCRUD.creatTable();
+        albumCRUD.createTable();
         playlistCRUD.createTable();
 
         try
@@ -734,7 +736,7 @@ public class MainService
                 boolean ok = true;
                 for(Album a: albums)
                 {
-                    if(a.getArtist().getId() == artistId)
+                    if(a.getArtistId() == artistId)
                     {
                         ok = false;
                         break;
@@ -955,7 +957,7 @@ public class MainService
                 boolean ok = true;
                 for(Playlist a: playlists)
                 {
-                    if(a.getOwner().getId() == ownerId)
+                    if(a.getOwnerId() == ownerId)
                     {
                         ok = false;
                         break;
@@ -970,11 +972,11 @@ public class MainService
             catch (Exception e)
             {
                 System.out.println("Introduce an integer value!");
-                System.out.print("Ownder ID: ");
+                System.out.print("Owner ID: ");
             }
         }
 
-        playlists.add(new Playlist(id, title, duration, privacy, ownerId));
+        playlists.add(new Playlist(id, title, duration, privacy, ownerId, null));
         ReadWriteCSV.writePlaylist(id, title, duration, privacy, ownerId);
         playlistCRUD.addPlaylist(id, title, duration, privacy, ownerId);
 

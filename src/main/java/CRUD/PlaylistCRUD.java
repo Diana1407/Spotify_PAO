@@ -134,7 +134,7 @@ public class PlaylistCRUD {
         }
     }
 
-    public void updatePlaylistPrivacy(int privacy, int id)
+    public void updatePlaylistPrivacy(boolean privacy, int id)
     {
         String updatePlaylistPrivacySql = "UPDATE Playlist SET privacy=? WHERE id=?";
 
@@ -142,7 +142,7 @@ public class PlaylistCRUD {
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(updatePlaylistPrivacySql))
         {
-            preparedStatement.setInt(1, privacy);
+            preparedStatement.setBoolean(1, privacy);
             preparedStatement.setInt(2, id);
 
             preparedStatement.executeUpdate();
