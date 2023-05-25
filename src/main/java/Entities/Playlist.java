@@ -59,6 +59,5 @@ public class Playlist extends TrackList {
 
         return result.toString();
 
-
     }
 }

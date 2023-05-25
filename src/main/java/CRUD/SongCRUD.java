@@ -25,7 +25,7 @@ public class SongCRUD {
                 "artistId int, " +
                 "albumId int, " +
                 "duration int, " +
-                "link varchar(40))";
+                "link varchar(200))";
 
         Connection connection = DatabaseConfig.getDatabaseConnection();
 
