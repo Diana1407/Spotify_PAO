@@ -1,2 +1,18 @@
-configure tables,2023-05-25 03:31:28
-load data,2023-05-25 03:31:28
+configure tables,2023-05-25 04:16:20
+load data,2023-05-25 04:16:21
+prints all Artists,2023-05-25 04:16:46
+prints all PremiumUsers,2023-05-25 04:16:51
+prints all Albums,2023-05-25 04:16:57
+prints all Playlists,2023-05-25 04:17:05
+prints all Songs,2023-05-25 04:17:09
+add Artist,2023-05-25 04:17:38
+prints all Artists,2023-05-25 04:17:41
+add PremiumUser,2023-05-25 04:18:01
+prints all PremiumUsers,2023-05-25 04:18:05
+add Album,2023-05-25 04:18:33
+prints all Albums,2023-05-25 04:18:38
+add Playlist,2023-05-25 04:18:53
+prints all Playlists,2023-05-25 04:18:57
+add Song,2023-05-25 04:19:18
+prints all Songs,2023-05-25 04:19:21
+closed connection with db,2023-05-25 04:19:39
