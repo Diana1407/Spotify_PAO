@@ -1085,49 +1085,36 @@ public class MainService
 
         System.out.print("Choose the id of the playlist: ");
         int playlistId;
-        while (true) {
-            try {
+
+        while(true)
+        {
+            try
+            {
                 playlistId = Integer.parseInt(scan.nextLine());
-
-                boolean ok = false;
-                for (Playlist a : playlists) {
-                    if (a.getId() == playlistId) {
-                        ok = true;
-                        break;
-                    }
-                }
-
-                if (!ok)
-                    throw new Exception();
-                else
-                    break;
-            } catch (Exception e) {
-                System.out.println("Introduce an existing id as an integer value! ");
-                System.out.print("Playlist Id: ");
+                break;
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("Introduce an integer value!");
+                System.out.print("Playlist ID: ");
             }
         }
 
+
         System.out.println("Choose the id of the song you want to add: ");
         int songId;
-        while (true) {
-            try {
+
+        while(true)
+        {
+            try
+            {
                 songId = Integer.parseInt(scan.nextLine());
-
-                boolean ok = false;
-                for (Song a : songs) {
-                    if (a.getId() == songId) {
-                        ok = true;
-                        break;
-                    }
-                }
-
-                if (!ok)
-                    throw new Exception();
-                else
-                    break;
-            } catch (Exception e) {
-                System.out.println("Introduce an existing id as an integer value!");
-                System.out.print("Song Id: ");
+                break;
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("Introduce an integer value!");
+                System.out.print("Song ID: ");
             }
         }
 
@@ -1153,7 +1140,7 @@ public class MainService
 //            songList.add(song);
 //            playlist.setSongs(songList);
 //        }
-        System.out.println(playlist);
+        //System.out.println(playlist);
     }
 
     public void deletePlaylistById()
