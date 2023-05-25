@@ -937,9 +937,9 @@ public class MainService
             }
         }
 
-        playlists.add(new Playlist(id, title, duration, privacy, ownerId, null));
-        ReadWriteCSV.writePlaylist(id, title, duration, privacy, ownerId);
-        playlistCRUD.addPlaylist(id, title, duration, privacy, ownerId);
+        playlists.add(new Playlist(id, title, duration, privacy, ownerId, ""));
+        ReadWriteCSV.writePlaylist(id, title, duration, privacy, ownerId, "");
+        playlistCRUD.addPlaylist(id, title, duration, privacy, ownerId, "");
 
         try
         {
@@ -1091,19 +1091,26 @@ public class MainService
 
         Playlist playlist = playlistCRUD.getPlaylistById(playlistId);
         Song song = songCRUD.getSongById(songId);
+        Artist artist = artistCRUD.getArtistById(song.getArtistId());
 
-        List<Song> songList = playlist.getSongs();
-        if(songList != null){
-            songList.add(song);
-            playlist.setSongs(songList);
-        }
-        else
-        {
-            songList = new ArrayList<>();
-            songList.add(song);
-            playlist.setSongs(songList);
-        }
-        System.out.println(playlist.toString());
+        String songList = playlist.getSongs();
+        songList = songList + song.getName() + " by " + artist.getUsername() + ", ";
+
+        playlist.setSongs(songList);
+        playlistCRUD.updatePlaylistSongs(songList, playlistId);
+
+//        List<Song> songList = playlist.getSongs();
+//        if(songList != null){
+//            songList.add(song);
+//            playlist.setSongs(songList);
+//        }
+//        else
+//        {
+//            songList = new ArrayList<>();
+//            songList.add(song);
+//            playlist.setSongs(songList);
+//        }
+        System.out.println(playlist);
     }
 
     public void deletePlaylistById()
@@ -1192,7 +1199,7 @@ public class MainService
                     }
                 }
 
-                if(ok == false)
+                if(!ok)
                     throw new Exception();
                 else
                     break;

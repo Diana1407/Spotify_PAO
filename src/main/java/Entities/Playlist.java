@@ -3,15 +3,16 @@ package Entities;
 import CRUD.PremiumUserCRUD;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Playlist extends TrackList {
     private String privacy;
     private int ownerId;
-    private List<Song> songs;
+    private String songs;
 
     public Playlist(){}
 
-    public Playlist(int id, String title, int duration, String privacy, int ownerId, List<Song> songs)
+    public Playlist(int id, String title, int duration, String privacy, int ownerId, String songs)
     {
         super(id, title, duration);
         this.privacy = privacy;
@@ -35,10 +36,10 @@ public class Playlist extends TrackList {
         this.ownerId = ownerId;
     }
 
-    public List<Song> getSongs(){
+    public String getSongs(){
         return songs;
     }
-    public void setSongs(List<Song> songs){
+    public void setSongs(String songs){
         this.songs = songs;
     }
 
@@ -46,19 +47,9 @@ public class Playlist extends TrackList {
     public String toString() {
         PremiumUser user = PremiumUserCRUD.getInstance().getPremiumUserById(ownerId);
         StringBuilder result = new StringBuilder("Playlist name: " + this.title + '\n' + "Duration: " + this.duration + '\n'
-         +"Owner UserName: " + user.getUsername() + '\n' + "This playlist is: " + this.privacy + '\n' + "The tracklist is: " + '\n');
+         +"Owner UserName: " + user.getUsername() + '\n' + "This playlist is: " + this.privacy + '\n' + "The tracklist is: ");
 
-        if(this.songs != null)
-        {
-            for (Song song : this.songs) {
-                result.append(song.toString());
-            }
-        }
-        else
-            result.append("empty");
-
+        result.append(Objects.requireNonNullElse(this.songs, "empty"));
         return result.toString();
-
-
     }
 }
