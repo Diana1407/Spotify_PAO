@@ -46,11 +46,16 @@ public class Playlist extends TrackList {
     public String toString() {
         PremiumUser user = PremiumUserCRUD.getInstance().getPremiumUserById(ownerId);
         StringBuilder result = new StringBuilder("Playlist name: " + this.title + '\n' + "Duration: " + this.duration + '\n'
-         +"Owner UserName: " + user.getUsername() + ". This playlist is: " + privacy + '\n' + "The tracklist is: " + '\n');
+         +"Owner UserName: " + user.getUsername() + '\n' + "This playlist is: " + this.privacy + '\n' + "The tracklist is: " + '\n');
 
-        for (Song song : songs) {
-            result.append(song.toString());
+        if(this.songs != null)
+        {
+            for (Song song : this.songs) {
+                result.append(song.toString());
+            }
         }
+        else
+            result.append("empty");
 
         return result.toString();
 

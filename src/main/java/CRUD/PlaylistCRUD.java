@@ -2,6 +2,7 @@ package CRUD;
 
 import Config.DatabaseConfig;
 import Entities.Playlist;
+import Entities.Song;
 import Services.ReadWriteCSV;
 
 import java.sql.*;
@@ -102,6 +103,20 @@ public class PlaylistCRUD {
                 System.out.println("Playlist duration: " + resultSet.getInt(3));
                 System.out.println("Playlist privacy: " + resultSet.getString(4));
                 System.out.println("Playlist de modif in nume OwnerID: " + resultSet.getInt(5));
+                System.out.println("Tracklist: ");
+
+                Playlist playlist = PlaylistCRUD.getInstance().getPlaylistById(resultSet.getInt(1));
+                //System.out.println(playlist.toString());
+
+                List<Song> songs = playlist.getSongs();
+                if(songs != null)
+                {
+                    for (Song song : songs) {
+                        System.out.println(song.toString());
+                    }
+                }
+                else
+                    System.out.println("Playlist gol!");
                 System.out.println();
             }
             if(ok)

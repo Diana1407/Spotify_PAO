@@ -55,6 +55,8 @@ public class Menu {
         System.out.println("23: Print song by a given id");
         System.out.println("24: Delete song by a given id");
         System.out.println("-----------------------------------");
+        System.out.println("25: Add song to playlist");
+        System.out.println("-----------------------------------");
         System.out.println("0: Exit");
         System.out.println("-----------------------------------");
     }
@@ -219,6 +221,12 @@ public class Menu {
             if(opt == 24)
             {
                 service.deleteSongById();
+                System.out.println("-----------------------------------");
+            }
+
+            if(opt == 25)
+            {
+                service.addSongToPlaylist();
                 System.out.println("-----------------------------------");
             }
 

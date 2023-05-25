@@ -636,20 +636,6 @@ public class MainService
         }
     }
 
-//    public void closeConnection()
-//    {
-//        DatabaseConfig.closeDatabaseConnection();
-//
-//        try
-//        {
-//            auditService.logAction("closed connection with db");
-//        }
-//        catch (IOException e)
-//        {
-//            e.printStackTrace();
-//        }
-//    }
-
     public void addAlbum()
     {
         Scanner scan = new Scanner(System.in);
@@ -701,23 +687,9 @@ public class MainService
             try
             {
                 duration = Integer.parseInt(scan.nextLine());
-
-                boolean ok = true;
-                for(Album a: albums)
-                {
-                    if(a.getDuration() == duration)
-                    {
-                        ok = false;
-                        break;
-                    }
-                }
-
-                if(!ok)
-                    throw new Exception();
-                else
-                    break;
+                break;
             }
-            catch (Exception e)
+            catch (NumberFormatException e)
             {
                 System.out.println("Introduce an integer value!");
                 System.out.print("Duration: ");
@@ -923,23 +895,9 @@ public class MainService
             try
             {
                 duration = Integer.parseInt(scan.nextLine());
-
-                boolean ok = true;
-                for(Album a: albums)
-                {
-                    if(a.getDuration() == duration)
-                    {
-                        ok = false;
-                        break;
-                    }
-                }
-
-                if(!ok)
-                    throw new Exception();
-                else
-                    break;
+                break;
             }
-            catch (Exception e)
+            catch (NumberFormatException e)
             {
                 System.out.println("Introduce an integer value!");
                 System.out.print("Duration: ");
@@ -1079,11 +1037,11 @@ public class MainService
             e.printStackTrace();
         }
     }
-    public void AddSongToPlaylist()
+    public void addSongToPlaylist()
     {
         Scanner scan = new Scanner(System.in);
 
-        System.out.print("Choose the id of the playlist");
+        System.out.print("Choose the id of the playlist: ");
         int playlistId;
         while (true) {
             try {
@@ -1102,12 +1060,12 @@ public class MainService
                 else
                     break;
             } catch (Exception e) {
-                System.out.println("Introduce an existing id as an integer value!");
+                System.out.println("Introduce an existing id as an integer value! ");
                 System.out.print("Playlist Id: ");
             }
         }
 
-        System.out.println("Choose the id of the song you want to add");
+        System.out.println("Choose the id of the song you want to add: ");
         int songId;
         while (true) {
             try {
@@ -1135,9 +1093,17 @@ public class MainService
         Song song = songCRUD.getSongById(songId);
 
         List<Song> songList = playlist.getSongs();
-        songList.add(song);
-        playlist.setSongs(songList);
-
+        if(songList != null){
+            songList.add(song);
+            playlist.setSongs(songList);
+        }
+        else
+        {
+            songList = new ArrayList<>();
+            songList.add(song);
+            playlist.setSongs(songList);
+        }
+        System.out.println(playlist.toString());
     }
 
     public void deletePlaylistById()
@@ -1226,7 +1192,7 @@ public class MainService
                     }
                 }
 
-                if(!ok)
+                if(ok == false)
                     throw new Exception();
                 else
                     break;
@@ -1271,30 +1237,31 @@ public class MainService
             }
         }
 
-
-            System.out.print("Album ID: ");
-            int albumId;
-            while (true) {
-                try {
-                    albumId = Integer.parseInt(scan.nextLine());
-
-                    boolean ok = false;
-                    for (Album a : albums) {
-                        if (a.getId() == albumId) {
-                            ok = true;
-                            break;
-                        }
-                    }
-
-                    if (!ok)
-                        throw new Exception();
-                    else
-                        break;
-                } catch (Exception e) {
-                    System.out.println("Introduce an existing id as an integer value!");
-                    System.out.print("Album Id: ");
-                }
+        System.out.print("Album ID: ");
+        int albumId;
+        while(true)
+        {
+            try
+            {
+                albumId = Integer.parseInt(scan.nextLine());
+                break;
             }
+            catch (NumberFormatException e)
+            {
+                System.out.println("Introduce an integer value!");
+                System.out.print("Album ID: ");
+            }
+        }
+
+        boolean okk = false;
+        for(Album a: albums)
+        {
+            if(albumId == a.getId())
+            {
+                okk = true;
+                break;
+            }
+        }
 
         System.out.print("Duration: ");
         int duration;

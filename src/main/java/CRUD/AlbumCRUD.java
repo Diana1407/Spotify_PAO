@@ -105,7 +105,7 @@ public class AlbumCRUD {
             }
             if(ok)
             {
-                System.out.println("No Artists to show!");
+                System.out.println("No Albums to show!");
             }
         }
         catch (SQLException e)
