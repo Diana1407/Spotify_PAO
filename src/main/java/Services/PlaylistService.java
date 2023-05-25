@@ -56,9 +56,9 @@ public class PlaylistService {
     public void addSongToPlaylist(int playlistId, Song song)
     {
         Playlist playlist = getPlaylistById(playlistId);
-        List<Song> aux= playlist.getSongs();
-        aux.add(song);
-        playlist.setSongs(aux);
+        ///List<Song> aux= playlist.getSongs();
+        ///aux.add(song);
+        ///playlist.setSongs(aux);
     }
 
     public void addPlaylist(Playlist playlist){
@@ -115,7 +115,7 @@ public class PlaylistService {
             Song song = songService.readSong();
             arr.add(song);
         }
-        playlist.setSongs(arr);
+        //playlist.setSongs(arr);
 
         System.out.println("Privacy ");
         String priv = scanner.next();
