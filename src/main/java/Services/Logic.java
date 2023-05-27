@@ -1,7 +1,4 @@
-package Services;/*
- * Class contains the logic for opening,playing and stopping a .wav file
- * Author : Karthik Abinav S; CS10B057
- */
+package Services;
 import CRUD.SongCRUD;
 import Entities.Song;
 
@@ -34,13 +31,7 @@ public class Logic {
     static JButton pause;
     static JButton open;
 
-    /*
-     * Function to sync the variables between GUI and logic
-     *
-     * @params: void
-     *
-     * @return : void
-     */
+
     private static void setter() {
         window = MainService.window;
         player = MainService.player;
@@ -51,13 +42,6 @@ public class Logic {
 
     }
 
-    /*
-     * Function to stop the currently playing song
-     *
-     * @params:void
-     *
-     * @return:void
-     */
     public static void stopSong() {
         if (audioSource.isOpen()) {
             //System.out.println("File has been stopped");
@@ -65,13 +49,6 @@ public class Logic {
         }
     }
 
-    /*
-     * Function to open the .wav file and start playing it
-     *
-     * @params:void
-     *
-     * @return : void
-     */
     public static void openFile(File file) throws UnsupportedAudioFileException,
             IOException, LineUnavailableException {
         setter();

@@ -1,7 +1,4 @@
-package Services;/*
- * Class which contains the various button listeners
- * Author : Karthik Abinav; CS10B057
- */
+package Services;
 
 import CRUD.SongCRUD;
 import Entities.Song;
@@ -16,13 +13,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Listener {
-    /*
-     * Services.Listener for the open button
-     *
-     * @params:void
-     *
-     * @return:void
-     */
+
     public static void openListener() {
         MainService.open.addMouseListener(new MouseListener() {
 
@@ -81,13 +72,6 @@ public class Listener {
 
     }
 
-    /*
-     * Services.Listener for the stop button
-     *
-     * @params:void
-     *
-     * @return:void
-     */
     public static void stopListener() {
         MainService.stop.addMouseListener(new MouseListener() {
 

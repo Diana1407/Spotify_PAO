@@ -56,7 +56,6 @@ public class Menu {
         System.out.println("24: Delete song by a given id");
         System.out.println("-----------------------------------");
         System.out.println("25: Add song to playlist");
-        System.out.println("26: Play a song!");
         System.out.println("-----------------------------------");
         System.out.println("0: Exit");
         System.out.println("-----------------------------------");

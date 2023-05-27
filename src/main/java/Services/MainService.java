@@ -1129,6 +1129,15 @@ public class MainService
         playlist.setSongs(songList);
         playlistCRUD.updatePlaylistSongs(songList, playlistId);
 
+        try
+        {
+            auditService.logAction("update Playlist List of Songs");
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
 //        List<Song> songList = playlist.getSongs();
 //        if(songList != null){
 //            songList.add(song);
