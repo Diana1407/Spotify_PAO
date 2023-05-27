@@ -26,9 +26,8 @@ public class PlaylistCRUD {
                 "title varchar(40)," +
                 "duration int," +
                 "privacy varchar(40)," +
-                "ownerID int, " +
-                "songs varchar(7000)" +
-                ")";
+                "ownerID int," +
+                "songs varchar(7000))";
 
         Connection connection = DatabaseConfig.getDatabaseConnection();
 
@@ -71,7 +70,7 @@ public class PlaylistCRUD {
     public void addPlaylist(int id, String title, int duration, String privacy, int ownerId, String songs)
     {
         String s = id + ",\"" + title + "\", \"" + duration +
-                "\", \"" + privacy + "\", \"" + ownerId + "\", \"" + songs + "\"";
+                "\", \"" + privacy + "\", \"" + ownerId +  "\", \"" + songs + "\"";
 
         String insertPlaylistSql = "INSERT INTO Playlist(id, title, duration, privacy, ownerId, songs) VALUES (" + s + ");";
 
@@ -111,7 +110,7 @@ public class PlaylistCRUD {
                 //System.out.println(playlist.toString());
 
                 String songs = playlist.getSongs();
-                System.out.println(Objects.requireNonNullElse(songs,"Playlist gol!"));
+                System.out.println(Objects.requireNonNullElse(songs, "Playlist gol!"));
 
                 System.out.println();
             }
@@ -163,6 +162,24 @@ public class PlaylistCRUD {
             e.printStackTrace();
         }
     }
+//    public void updatePlaylistSongs(String songs, int id)
+//    {
+//        String updatePlaylistSongsSql = "UPDATE Playlist SET songs=? WHERE id=?";
+//
+//        Connection connection = DatabaseConfig.getDatabaseConnection();
+//
+//        try(PreparedStatement preparedStatement = connection.prepareStatement(updatePlaylistSongsSql))
+//        {
+//            preparedStatement.setString(1, songs);
+//            preparedStatement.setInt(2, id);
+//
+//            preparedStatement.executeUpdate();
+//        }
+//        catch(SQLException e)
+//        {
+//            e.printStackTrace();
+//        }
+//    }
 
     public void deletePlaylistById(int id)
     {

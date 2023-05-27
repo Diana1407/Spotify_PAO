@@ -183,6 +183,7 @@ public class ReadWriteCSV {
             PrintWriter printWriter = new PrintWriter(bufferedWriter);
 
             String playlistString = id + "," + title + "," + duration + "," + privacy + "," + ownerId + "," + songs;
+
             printWriter.println(playlistString);
 
             printWriter.flush();

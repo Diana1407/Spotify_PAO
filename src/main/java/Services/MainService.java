@@ -979,7 +979,7 @@ public class MainService
             }
         }
 
-        playlists.add(new Playlist(id, title, duration, privacy, ownerId,""));
+        playlists.add(new Playlist(id, title, duration, privacy, ownerId, ""));
         ReadWriteCSV.writePlaylist(id, title, duration, privacy, ownerId, "");
         playlistCRUD.addPlaylist(id, title, duration, privacy, ownerId, "");
 
@@ -1120,7 +1120,6 @@ public class MainService
 
         Playlist playlist = playlistCRUD.getPlaylistById(playlistId);
         Song song = songCRUD.getSongById(songId);
-
         Artist artist = artistCRUD.getArtistById(song.getArtistId());
 
         String songList = playlist.getSongs();
@@ -1149,7 +1148,8 @@ public class MainService
 //            songList.add(song);
 //            playlist.setSongs(songList);
 //        }
-        //System.out.println(playlist);
+
+        System.out.println(playlist);
     }
 
     public void deletePlaylistById()
@@ -1238,7 +1238,7 @@ public class MainService
                     }
                 }
 
-                if(ok == false)
+                if(!ok)
                     throw new Exception();
                 else
                     break;
