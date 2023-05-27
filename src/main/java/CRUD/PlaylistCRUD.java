@@ -108,8 +108,10 @@ public class PlaylistCRUD {
 
                 Playlist playlist = PlaylistCRUD.getInstance().getPlaylistById(resultSet.getInt(1));
                 //System.out.println(playlist.toString());
+
                 String songs = playlist.getSongs();
                 System.out.println(Objects.requireNonNullElse(songs, "Playlist gol!"));
+
                 System.out.println();
             }
             if(ok)
@@ -160,24 +162,24 @@ public class PlaylistCRUD {
             e.printStackTrace();
         }
     }
-    public void updatePlaylistSongs(String songs, int id)
-    {
-        String updatePlaylistSongsSql = "UPDATE Playlist SET songs=? WHERE id=?";
-
-        Connection connection = DatabaseConfig.getDatabaseConnection();
-
-        try(PreparedStatement preparedStatement = connection.prepareStatement(updatePlaylistSongsSql))
-        {
-            preparedStatement.setString(1, songs);
-            preparedStatement.setInt(2, id);
-
-            preparedStatement.executeUpdate();
-        }
-        catch(SQLException e)
-        {
-            e.printStackTrace();
-        }
-    }
+//    public void updatePlaylistSongs(String songs, int id)
+//    {
+//        String updatePlaylistSongsSql = "UPDATE Playlist SET songs=? WHERE id=?";
+//
+//        Connection connection = DatabaseConfig.getDatabaseConnection();
+//
+//        try(PreparedStatement preparedStatement = connection.prepareStatement(updatePlaylistSongsSql))
+//        {
+//            preparedStatement.setString(1, songs);
+//            preparedStatement.setInt(2, id);
+//
+//            preparedStatement.executeUpdate();
+//        }
+//        catch(SQLException e)
+//        {
+//            e.printStackTrace();
+//        }
+//    }
 
     public void deletePlaylistById(int id)
     {
@@ -192,6 +194,25 @@ public class PlaylistCRUD {
             preparedStatement.executeUpdate();
         }
         catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void updatePlaylistSongs(String songs, int id)
+    {
+        String updatePlaylistSongsSql = "UPDATE Playlist SET songs=? WHERE id=?";
+
+        Connection connection = DatabaseConfig.getDatabaseConnection();
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(updatePlaylistSongsSql))
+        {
+            preparedStatement.setString(1, songs);
+            preparedStatement.setInt(2, id);
+
+            preparedStatement.executeUpdate();
+        }
+        catch(SQLException e)
         {
             e.printStackTrace();
         }

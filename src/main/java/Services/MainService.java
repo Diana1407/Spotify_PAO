@@ -11,6 +11,11 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import java.awt.Dimension;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 public class MainService
 {
     public static List<Artist> artists = new ArrayList<>();
@@ -20,6 +25,15 @@ public class MainService
 
     public static List<Song> songs = new ArrayList<>();
 
+    static JFrame window;
+    static JPanel player;
+    static JButton play;
+    static JButton stop;
+    static JButton pause;
+    static JButton open;
+
+
+
     AuditService auditService = AuditService.getInstance();
 
     ArtistCRUD artistCRUD = ArtistCRUD.getInstance();
@@ -27,6 +41,34 @@ public class MainService
     AlbumCRUD albumCRUD = AlbumCRUD.getInstance();
     PlaylistCRUD playlistCRUD = PlaylistCRUD.getInstance();
     SongCRUD songCRUD = SongCRUD.getInstance();
+
+    public static void createButtons() {
+
+        open = new JButton();
+        open.setText("Play");
+        Listener.openListener();
+        player.add(open);
+
+        stop = new JButton();
+        stop.setText("Stop");
+        Listener.stopListener();
+        player.add(stop);
+
+        window.pack();
+    }
+
+    public static void GUI() {
+        window = new JFrame("Wave Player");
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setMinimumSize(new Dimension(400, 200));
+
+        player = new JPanel();
+        window.add(player);
+        window.pack();
+        window.setVisible(true);
+
+        createButtons();
+    }
 
     public void loadData()
     {
@@ -1043,49 +1085,36 @@ public class MainService
 
         System.out.print("Choose the id of the playlist: ");
         int playlistId;
-        while (true) {
-            try {
+
+        while(true)
+        {
+            try
+            {
                 playlistId = Integer.parseInt(scan.nextLine());
-
-                boolean ok = false;
-                for (Playlist a : playlists) {
-                    if (a.getId() == playlistId) {
-                        ok = true;
-                        break;
-                    }
-                }
-
-                if (!ok)
-                    throw new Exception();
-                else
-                    break;
-            } catch (Exception e) {
-                System.out.println("Introduce an existing id as an integer value! ");
-                System.out.print("Playlist Id: ");
+                break;
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("Introduce an integer value!");
+                System.out.print("Playlist ID: ");
             }
         }
 
+
         System.out.println("Choose the id of the song you want to add: ");
         int songId;
-        while (true) {
-            try {
+
+        while(true)
+        {
+            try
+            {
                 songId = Integer.parseInt(scan.nextLine());
-
-                boolean ok = false;
-                for (Song a : songs) {
-                    if (a.getId() == songId) {
-                        ok = true;
-                        break;
-                    }
-                }
-
-                if (!ok)
-                    throw new Exception();
-                else
-                    break;
-            } catch (Exception e) {
-                System.out.println("Introduce an existing id as an integer value!");
-                System.out.print("Song Id: ");
+                break;
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("Introduce an integer value!");
+                System.out.print("Song ID: ");
             }
         }
 
@@ -1099,6 +1128,15 @@ public class MainService
         playlist.setSongs(songList);
         playlistCRUD.updatePlaylistSongs(songList, playlistId);
 
+        try
+        {
+            auditService.logAction("update Playlist List of Songs");
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
 //        List<Song> songList = playlist.getSongs();
 //        if(songList != null){
 //            songList.add(song);
@@ -1110,6 +1148,7 @@ public class MainService
 //            songList.add(song);
 //            playlist.setSongs(songList);
 //        }
+
         System.out.println(playlist);
     }
 
@@ -1220,27 +1259,53 @@ public class MainService
         System.out.print("Name: ");
         String name = scan.nextLine();
 
+//        System.out.print("Artist ID: ");
+//        int artistId;
+//        while(true) {
+//            try {
+//                artistId = Integer.parseInt(scan.nextLine());
+//
+//                boolean ok = false;
+//                for (Artist a : artists) {
+//                    if (a.getId() == artistId) {
+//                        ok = true;
+//                        break;
+//                    }
+//                }
+//
+//                if (!ok)
+//                    throw new Exception();
+//                else
+//                    break;
+//            } catch (Exception e) {
+//                System.out.println("Introduce an existing id as an integer value!");
+//                System.out.print("Artist ID: ");
+//            }
+//        }
+
         System.out.print("Artist ID: ");
         int artistId;
-        while(true) {
-            try {
+        while(true)
+        {
+            try
+            {
                 artistId = Integer.parseInt(scan.nextLine());
-
-                boolean ok = false;
-                for (Artist a : artists) {
-                    if (a.getId() == artistId) {
-                        ok = true;
-                        break;
-                    }
-                }
-
-                if (!ok)
-                    throw new Exception();
-                else
-                    break;
-            } catch (Exception e) {
-                System.out.println("Introduce an existing id as an integer value!");
+                break;
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("Introduce an integer value!");
                 System.out.print("Artist ID: ");
+            }
+        }
+
+        boolean okk = false;
+        for(Artist a: artists)
+        {
+            if(artistId == a.getId())
+            {
+                okk = true;
+                break;
             }
         }
 
@@ -1260,7 +1325,7 @@ public class MainService
             }
         }
 
-        boolean okk = false;
+        okk = false;
         for(Album a: albums)
         {
             if(albumId == a.getId())

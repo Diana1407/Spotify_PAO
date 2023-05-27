@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+configure tables,2023-05-25 16:36:34
+load data,2023-05-25 16:36:34
+prints all Artists,2023-05-25 16:36:40
+delete Artist,2023-05-25 16:36:50
+closed connection with db,2023-05-25 16:36:54
+=======
 configure tables,2023-05-25 04:16:20
 load data,2023-05-25 04:16:21
 prints all Artists,2023-05-25 04:16:46
@@ -16,3 +23,4 @@ prints all Playlists,2023-05-25 04:18:57
 add Song,2023-05-25 04:19:18
 prints all Songs,2023-05-25 04:19:21
 closed connection with db,2023-05-25 04:19:39
+>>>>>>> c7d1f318ddc53c151f4f388977dbea7d754eb8b2
