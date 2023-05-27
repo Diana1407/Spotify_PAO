@@ -35,3 +35,11 @@ addSongToPlaylist()
 print()
 -----------------------------------
 ```
+
+## ETAPA 2
+Adaugarea clasei ReadWrite pentru creare de fisiere CSV corespunzatoare claselor Artis, Album, Song, Playlist, PremiumUser din care se citesc si in care se scriu date. Aceste fisiere sunt incarcate in program la inceputul acestuia iar datele introduse din meniul interactiv vor fi salvate permanent in aceste fisiere. 
+
+Configurarea unei baze de date cu JDBC si MySQL cu tabele corespunzatoare claselor Artis, Album, Song, Playlist, PremiumUser. Pentru introducerea si modificarea datelor din tabele au fost create 5 clase de tip repository(CRUD) si singleton ce se conecteaza la baza de date.
+
+**Serviciu de audit**
+Pentru inregistrarea tuturor actiunilor facute intr-o rulare a programului am implementant o clasa de tip singleton ce scrie toate operatiunile desfasurate intr-un fisier de tip CSV cu formatul nume_actiune, timestamp. Un exemplu de astfel de fisier:
